@@ -122,7 +122,7 @@ chown -R vnstat:vnstat /var/lib/vnstat
 # install squid3
 cd
 apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf;
 /etc/init.d/squid restart
 
@@ -174,7 +174,7 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
 # common password debian 
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/common-password-deb9"
+wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/common-password-deb9"
 chmod +x /etc/pam.d/common-password
 
 #instal sslh
@@ -182,7 +182,7 @@ cd
 apt-get -y install sslh
 
 #configurasi sslh
-wget -O /etc/default/sslh "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/sslh-conf"
+wget -O /etc/default/sslh "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/sslh-conf"
 service sslh restart
 
 echo "================= Install PPTP  ======================"
@@ -220,7 +220,7 @@ echo "================= Disable badVPN V 1  ======================"
 #cd /usr/bin
 #mkdir build
 #cd /usr/bin/build
-#wget https://github.com/idtunnel/sshtunnel/raw/master/debian9/badvpn/badvpn-update.zip
+#wget https://github.com/idtunnel/sshtunnel/raw/main/debian9/badvpn/badvpn-update.zip
 #unzip badvpn-update
 #cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
 #make install
@@ -246,7 +246,7 @@ cd
 
 
 echo "================= Auto Installer Disable badVPN V 2  ======================"
-#wget https://raw.githubusercontent.com/idtunnel/UDPGW-SSH/master/badudp2.sh
+#wget https://raw.githubusercontent.com/idtunnel/UDPGW-SSH/main/badudp2.sh
 #chmod +x badudp2.sh
 #bash badudp2.sh
 
@@ -287,7 +287,7 @@ chmod +x /usr/bin/build
 chmod +x /etc/rc.local
 
 # Custom Banner SSH
-wget -O /etc/issue.net "https://github.com/idtunnel/sshtunnel/raw/master/debian9/banner-custom.conf"
+wget -O /etc/issue.net "https://github.com/idtunnel/sshtunnel/raw/main/debian9/banner-custom.conf"
 chmod +x /etc/issue.net
 
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
@@ -326,24 +326,24 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # download script
 cd /usr/bin
-wget -O menu "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/hapus.sh"
-wget -O cek "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/user-login.sh"
-wget -O member "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/user-list.sh"
-wget -O jurus69 "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/info.sh"
-wget -O about "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/about.sh"
-wget -O delete "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/delete.sh"
+wget -O menu "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/user-login.sh"
+wget -O member "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/user-list.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/info.sh"
+wget -O about "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/about.sh"
+wget -O delete "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/delete.sh"
 
-wget -O pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/add-pptp.sh"
-wget -O delete-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/delete-pptp.sh"
-wget -O alluser-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/alluser-pptp.py"
-wget -O login-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/login-pptp.sh"
-wget -O expire-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/expire-pptp.sh"
-wget -O detail-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/master/detail-pptp.sh"
+wget -O pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/add-pptp.sh"
+wget -O delete-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/delete-pptp.sh"
+wget -O alluser-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/alluser-pptp.py"
+wget -O login-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/login-pptp.sh"
+wget -O expire-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/expire-pptp.sh"
+wget -O detail-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/detail-pptp.sh"
 
 echo "0 0 * * * root /usr/bin/expire-pptp" > /etc/cron.d/expire-pptp
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
@@ -429,7 +429,7 @@ rm -f /root/openssh.sh
 #echo "================  install OPENVPN  saya disable======================"
 #echo "========================================================="
 # install openvpn debian 9 ( openvpn port 1194 dan 443 )
-#wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+#wget https://raw.githubusercontent.com/idtunnel/sshtunnel/main/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 #echo "==================== Restart Service ===================="
 #echo "========================================================="
