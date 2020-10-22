@@ -324,106 +324,10 @@ echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
-# install webserver
-cd
-sudo apt-get -y install nginx
-rm /etc/nginx/sites-enabled/default
-rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/nginx-default.conf"
-mkdir -p /home/vps/public_html
-echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/vhost-nginx.conf"
-/etc/init.d/nginx restart
-
-# instal nginx php5.6 
-apt-get -y install nginx php5.6-fpm
-apt-get -y install nginx php5.6-cli
-apt-get -y install nginx php5.6-mysql
-apt-get -y install nginx php5.6-mcrypt
-sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/5.6/cli/php.ini
-
-# cari config php fpm dengan perintah berikut "php --ini |grep Loaded"
-sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/5.6/cli/php.ini
-
-# Cari config php fpm www.conf dengan perintah berikut "find / \( -iname "php.ini" -o -name "www.conf" \)"
-sed -i 's/listen = \/run\/php\/php5.6-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/5.6/fpm/pool.d/www.conf
-cd
-
-# Edit port apache2 ke 8090
-wget -O /etc/apache2/ports.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/apache2.conf"
-
-# Edit port virtualhost apache2 ke 8090
-wget -O /etc/apache2/sites-enabled/000-default.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/virtualhost.conf"
-
-# restart apache2
-/etc/init.d/apache2 restart
-
-# install openvpn
-apt-get -y install openvpn easy-rsa openssl
-cp -r /usr/share/easy-rsa/ /etc/openvpn
-mkdir /etc/openvpn/easy-rsa/keys
-sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="ID"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Samarinda"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Samarinda"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="ZonaNyaman"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="Gtatisan09@gmail.com"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="IpangNettNott"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="GUGUN"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_OU=changeme|export KEY_OU=GUGUN|' /etc/openvpn/easy-rsa/vars
-
-# Create Diffie-Helman Pem
-openssl dhparam -out /etc/openvpn/dh2048.pem 2048
-
-# Create PKI
-cd /etc/openvpn/easy-rsa
-cp openssl-1.0.0.cnf openssl.cnf
-. ./vars
-./clean-all
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" --initca $*
-
-# Create key server
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" --server server
-
-# Setting KEY CN
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" client
-
-# cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn
-cd
-cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
-cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
-cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
-chmod +x /etc/openvpn/ca.crt
-
-# server settings
-cd /etc/openvpn/
-wget -O /etc/openvpn/server.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/server.conf"
-systemctl start openvpn@server
-sysctl -w net.ipv4.ip_forward=1
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
-iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
-iptables-save > /etc/iptables.up.rules
-wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/iptables-openvpn"
-chmod +x /etc/network/if-up.d/iptables
-sed -i 's|LimitNPROC|#LimitNPROC|g' /lib/systemd/system/openvpn@.service
-systemctl daemon-reload
-/etc/init.d/openvpn restart
-
-# openvpn config
-wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/client.conf"
-sed -i $MYIP2 /etc/openvpn/client.ovpn;
-echo '<ca>' >> /etc/openvpn/client.ovpn
-cat /etc/openvpn/ca.crt >> /etc/openvpn/client.ovpn
-echo '</ca>' >> /etc/openvpn/client.ovpn
-cp client.ovpn /home/vps/public_html/
-#wget -O /etc/openvpn/openvpnssl.ovpn "https://raw.githubusercontent.com/gugun09/install/master/openvpnssl.conf"
-#echo '<ca>' >> /etc/openvpn/openvpnssl.ovpn
-#cat /etc/openvpn/ca.crt >> /etc/openvpn/openvpnssl.ovpn
-#echo '</ca>' >> /etc/openvpn/openvpnssl.ovpn
-#cp openvpnssl.ovpn /home/vps/public_html/
+echo "================  install OPENVPN ======================"
+echo "========================================================="
+#install openvpn debian 9 ( openvpn port 1194 dan 443 )
+wget https://raw.githubusercontent.com/gugun09/tunnel_9-10/mainopenvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 # download script
 cd /usr/bin
@@ -477,11 +381,13 @@ service squid restart
 service pptpd restart
 /etc/init.d/nginx restart
 #/etc/init.d/openvpn restart
-rm -rf ~/.bash_history && history -c
-echo "unset HISTFILE" >> /etc/profile
 cd
 # auto Delete Acount SSH Expired
 wget -O /usr/local/bin/userdelexpired "https://www.dropbox.com/s/cwe64ztqk8w622u/userdelexpired?dl=1" && chmod +x /usr/local/bin/userdelexpired
+
+rm -rf ~/.bash_history && history -c
+echo "unset HISTFILE" >> /etc/profile
+
 # info
 clear
 echo "Autoscript Include:" | tee log-install.txt
@@ -526,6 +432,8 @@ echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 
 rm -f /root/openssh.sh
+
+reboot
 
 #echo "================  install OPENVPN  saya disable======================"
 #echo "========================================================="
