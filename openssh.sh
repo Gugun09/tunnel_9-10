@@ -370,7 +370,7 @@ cd
 echo "================  install OPENVPN ======================"
 echo "========================================================="
 #install openvpn debian 9 ( openvpn port 1194 dan 443 )
-wget https://raw.githubusercontent.com/gugun09/tunnel_9-10/mainopenvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+wget https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 # finishing
 cd
