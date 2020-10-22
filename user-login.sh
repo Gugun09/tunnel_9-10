@@ -4,6 +4,7 @@
 # Mod by hideSSH
 # ==========================
 # 
+clear
 
 data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
 

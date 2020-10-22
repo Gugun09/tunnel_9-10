@@ -2,6 +2,7 @@
 # Script auto create trial user SSH
 # yg akan expired setelah 1 hari
 # modified by White-vps.com
+clear
 
 IP=`curl icanhazip.com`
 
