@@ -37,10 +37,10 @@ cd
 sudo apt-get -y install nginx
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/nginx-default.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/nginx-default.conf"
 mkdir -p /home/vps/public_html
 echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/vhost-nginx.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/vhost-nginx.conf"
 /etc/init.d/nginx restart
 
 # instal nginx php5.6 
@@ -59,10 +59,10 @@ cd
 
 
 # Edit port apache2 ke 8090
-wget -O /etc/apache2/ports.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/apache2.conf"
+wget -O /etc/apache2/ports.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/apache2.conf"
 
 # Edit port virtualhost apache2 ke 8090
-wget -O /etc/apache2/sites-enabled/000-default.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/virtualhost.conf"
+wget -O /etc/apache2/sites-enabled/000-default.conf "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/virtualhost.conf"
 
 # restart apache2
 /etc/init.d/apache2 restart
@@ -74,14 +74,7 @@ apt install openssl iptables -y
 # install openvpn
 cp -r /usr/share/easy-rsa/ /etc/openvpn
 mkdir /etc/openvpn/easy-rsa/keys
-sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="ID"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Samarinda"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Samarinda"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="ZonaNyaman"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="Gtatisan09@gmail.com"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="IpangNettNott"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="GUGUN"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_OU=changeme|export KEY_OU=GUGUN|' /etc/openvpn/easy-rsa/vars
+wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/vars.conf"
 
 # generate Diffie hellman parameters
 openssl dhparam -out /etc/openvpn/dh2048.pem 2048
@@ -238,8 +231,8 @@ cd clientconfig
 # Buat config client UDP 1194
 cd /etc/openvpn
 cat > /etc/openvpn/client-udp-1194.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSH.COM #####
+##### WELCOME TO QueenSSH #####
+##### WWW.QueenSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
@@ -259,8 +252,8 @@ sed -i $MYIP2 /etc/openvpn/client-udp-1194.ovpn;
 
 # Buat config client TCP 1194
 cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSHSSH.COM #####
+##### WELCOME TO QueenSSH #####
+##### WWW.QueenSSHSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
@@ -280,8 +273,8 @@ sed -i $MYIP2 /etc/openvpn/client-tcp-1194.ovpn;
 
 # Buat config client UDP 2200
 cat > /etc/openvpn/client-udp-2200.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSH.COM #####
+##### WELCOME TO QueenSSH #####
+##### WWW.QueenSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
@@ -301,8 +294,8 @@ sed -i $MYIP2 /etc/openvpn/client-udp-2200.ovpn;
 
 # Buat config client TCP 2200
 cat > /etc/openvpn/client-tcp-2200.ovpn <<-END
-##### WELCOME TO HideSSH #####
-##### WWW.HideSSH.COM #####
+##### WELCOME TO QueenSSH #####
+##### WWW.QueenSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
@@ -411,7 +404,7 @@ iptables -A POSTROUTING -t nat -j MASQUERADE
 iptables-save > /etc/iptables-opvpn.conf
 
 # Restore iptables
-wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/iptables-local"
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/iptables-local"
 chmod +x /etc/network/if-up.d/iptables
 
 # Restore iptables rc.local

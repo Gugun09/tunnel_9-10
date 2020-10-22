@@ -324,11 +324,6 @@ echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
-echo "================  install OPENVPN ======================"
-echo "========================================================="
-#install openvpn debian 9 ( openvpn port 1194 dan 443 )
-wget https://raw.githubusercontent.com/gugun09/tunnel_9-10/mainopenvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
-
 # download script
 cd /usr/bin
 wget -O menu "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/menu.sh"
@@ -371,6 +366,12 @@ chmod +x info
 chmod +x about
 chmod +x delete
 
+cd
+echo "================  install OPENVPN ======================"
+echo "========================================================="
+#install openvpn debian 9 ( openvpn port 1194 dan 443 )
+wget https://raw.githubusercontent.com/gugun09/tunnel_9-10/mainopenvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+
 # finishing
 cd
 chown -R www-data:www-data /home/vps/public_html
@@ -380,10 +381,10 @@ chown -R www-data:www-data /home/vps/public_html
 service squid restart
 service pptpd restart
 /etc/init.d/nginx restart
-#/etc/init.d/openvpn restart
+/etc/init.d/openvpn restart
 cd
 # auto Delete Acount SSH Expired
-wget -O /usr/local/bin/userdelexpired "https://www.dropbox.com/s/cwe64ztqk8w622u/userdelexpired?dl=1" && chmod +x /usr/local/bin/userdelexpired
+#wget -O /usr/local/bin/userdelexpired "https://www.dropbox.com/s/cwe64ztqk8w622u/userdelexpired?dl=1" && chmod +x /usr/local/bin/userdelexpired
 
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
@@ -433,12 +434,6 @@ echo "==========================================="  | tee -a log-install.txt
 
 rm -f /root/openssh.sh
 
-reboot
-
-#echo "================  install OPENVPN  saya disable======================"
-#echo "========================================================="
-# install openvpn debian 9 ( openvpn port 1194 dan 443 )
-#wget https://raw.githubusercontent.com/idtunnel/sshtunnel/main/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 #echo "==================== Restart Service ===================="
 #echo "========================================================="
