@@ -416,7 +416,7 @@ cd
 /etc/init.d/openvpn restart
 
 #auto delete
-wget -O /usr/local/bin/userdelexpired "https://www.dropbox.com/s/cwe64ztqk8w622u/userdelexpired?dl=1" && chmod +x /usr/local/bin/userdelexpired
+wget -O /usr/local/bin/userdelexpired "https://raw.githubusercontent.com/Gugun09/tunnel_9-10/main/delete.sh" && chmod +x /usr/local/bin/userdelexpired
 
 # Delete script
 rm -f /root/openvpn.sh
