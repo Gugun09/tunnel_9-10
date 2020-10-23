@@ -48,6 +48,6 @@
                fi
                done
                echo "-------------------------------------------"
-echo " The script has been successfully executed "
-echo "-------------------------------------------"
-echo " "
+               echo " The script has been successfully executed "
+               echo "-------------------------------------------"
+               echo " "
