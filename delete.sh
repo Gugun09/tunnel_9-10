@@ -1,7 +1,8 @@
 #!/bin/bash
-            
-            echo ""
-
+ clear           
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
                if [ ! -f /usr/local/bin/deleteduser ]; then
                echo "echo "Autoscript by QueenSSH"" > /usr/local/bin/deleteduser
                chmod +x /usr/local/bin/deleteduser
