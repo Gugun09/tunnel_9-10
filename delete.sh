@@ -47,6 +47,7 @@
                userdel $username
                fi
                done
-               echo " "
-               echo "--------------------------------------"
-               echo "Script are successfully run"
+               echo "-------------------------------------------"
+echo " The script has been successfully executed "
+echo "-------------------------------------------"
+echo " "
