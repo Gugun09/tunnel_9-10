@@ -26,5 +26,5 @@ echo -e "Config OpenVPN TCP (modif): http://$IP:81/client-tcp-2200.ovpn"
 echo -e "Config OpenVPN UDP: http://$IP:81/client-udp-2200.ovpn"
 echo -e "============================="
 
-echo -e "Mod by HideSSH.com"
+echo -e "Mod by QueenSSH.com"
 echo -e ""
