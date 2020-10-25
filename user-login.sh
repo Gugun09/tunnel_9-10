@@ -51,6 +51,6 @@ echo "------------------------------------------------"
 
 echo "";
 
-echo "Mod by partner HideSSH";
+echo "Mod by partner QueenSSH";
 
 echo "";
