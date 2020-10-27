@@ -138,6 +138,12 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 rm -f webmin_1.910_all.deb
 /etc/init.d/webmin restart
 
+echo "=================  install Lolcat  ======================"
+echo "========================================================="
+
+apt-get -y install ruby
+gem install lolcat
+
 echo "=================  install stunnel  ====================="
 echo "========================================================="
 
