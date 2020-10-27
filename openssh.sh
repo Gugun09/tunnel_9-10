@@ -337,6 +337,8 @@ wget -O speedtest "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/sp
 wget -O info "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/info.sh"
 wget -O about "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/about.sh"
 wget -O delete "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/delete.sh"
+wget -O renew "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/renew"
+wget -O pass "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/cekpass"
 
 wget -O pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/add-pptp.sh"
 wget -O delete-pptp "https://raw.githubusercontent.com/gugun09/tunnel_9-10/main/delete-pptp.sh"
@@ -365,6 +367,8 @@ chmod +x speedtest
 chmod +x info
 chmod +x about
 chmod +x delete
+chmod +x renew
+chmod +x pass
 
 cd
 echo "================  install OPENVPN ======================"
